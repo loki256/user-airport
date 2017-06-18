@@ -18,7 +18,7 @@ To run main script you must provide next parameters:
 
 ## Running example:
 
-    sbt "run-main --airport-file optd-sample-20161201.csv --user-file sample_data.csv --result-file result.csv"
+    sbt "runMain loki256.github.com.userairport.Main --airport-file optd-sample-20161201.csv --user-file sample_data.csv --result-file brute_result.csv"
 
 # Description
 

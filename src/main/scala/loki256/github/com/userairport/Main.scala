@@ -26,7 +26,7 @@ object Main extends StrictLogging {
       User(x("uuid"), x("geoip_latitude").toDouble, x("geoip_longitude").toDouble)
     }
 
-    val geohashResult = algorithms.BruteForce.calculate(
+    val geohashResult = algorithms.GeoHashMap.calculate(
       users,
       airPorts
     ).map { res: UserAirportResult =>
