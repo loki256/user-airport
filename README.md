@@ -22,7 +22,7 @@ To run main script you must provide next parameters:
 
 # Description
 
-I used geohash library for implementation. We assume that airport data set is significantly smaller then input users (it's only 6889 items). For each airport we create 9 [geohashes](https://en.wikipedia.org/wiki/Geohash) for each length. One for the location itself and 8 surrounding geohashes. We put them to dict geohashString -> Sequence(Airport). For each user we calculate geohash and search in the map. If we did not find close airports we increase radius (decrease geohash size) and try again. If we managed to find airports by geohash we choose the closest one by brute force. 
+I used geohash library for implementation. We assume that airport data set is significantly smaller then input users (it's only 6889 items). For each airport we create 9 [geohashes](https://en.wikipedia.org/wiki/Geohash) for each geohash accuracy. One for the location itself and 8 surrounding geohashes. We put them into dict: geohashString -> Sequence(Airport). For each user we calculate geohash and search it in the map. If we did not find close airports we increase radius (decrease geohash size) and try again. If we managed to find airports by geohash we choose the closest one by brute force. 
 
 Complexity of algorithm is about O(NxLog(M))
 
