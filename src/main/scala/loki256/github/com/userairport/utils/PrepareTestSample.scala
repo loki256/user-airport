@@ -12,7 +12,7 @@ object PrepareTestSample {
   class AppConf(arguments: Seq[String]) extends ScallopConf(arguments) {
     val input: ScallopOption[String] = opt[String](required = true)
     val result: ScallopOption[String] = opt[String](required = true)
-    val size: ScallopOption[Int] = opt[Int](default = Some(100))
+    val size: ScallopOption[Int] = opt[Int](default = Some(1000))
     verify()
   }
 

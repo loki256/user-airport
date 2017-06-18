@@ -2,9 +2,9 @@ package loki256.github.com.userairport.utils
 
 import org.scalatest.{FunSpec, Matchers}
 
-class LatLongUtilsSpec extends FunSpec with Matchers {
+class GeoUtilsSpec extends FunSpec with Matchers {
 
-  import LatLongUtils._
+  import GeoUtils._
 
   describe("distance") {
     it("should give zero distance for the same coordinates") {
@@ -18,4 +18,3 @@ class LatLongUtilsSpec extends FunSpec with Matchers {
     }
   }
 }
-

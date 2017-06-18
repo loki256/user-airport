@@ -1,6 +1,6 @@
 package loki256.github.com.userairport.algorithms
 
-import loki256.github.com.userairport.model.{AirPort, LocationTrait, User}
+import loki256.github.com.userairport.model.{AirPort, LocationTrait, User, UserAirportResult}
 import org.scalacheck.Gen
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.scalatest.{FunSpec, Matchers}
@@ -13,7 +13,7 @@ class GeoHashMapSpec extends FunSpec with Matchers with GeneratorDrivenPropertyC
   describe("getNeighboursGeohashStrings") {
 
     it("should return 9 geoHashes for coordinates") {
-      val latGen = Gen.choose[Double](0.0, 90.0)
+      val latGen = Gen.choose[Double](-90.0, 90.0)
       val lonGen = Gen.choose[Double](-180.0, 180.0)
       val geohashAccGen = Gen.choose(1, 12)
       forAll(latGen, lonGen, geohashAccGen) { (lat: Double, lon: Double, geohashAccuracy: Int) =>
@@ -55,14 +55,18 @@ class GeoHashMapSpec extends FunSpec with Matchers with GeneratorDrivenPropertyC
 
       val users = Source.fromInputStream(getClass.getResourceAsStream("/users_sample.csv")).getLines.drop(1).map { line =>
         User(line)
-      }.take(45).toSeq
+      }.toSeq
 
-      val bruteForceResult = BruteForce.calculate(users.toIterator, airPorts.toIterator).toSeq
-      val geohashMapResult = GeoHashMap.calculate(users.toIterator, airPorts.toIterator).toSeq
+      val expectedResult = Source.fromInputStream(getClass.getResourceAsStream("/brute_result.csv")).getLines.map { line =>
+        val arr = line.split(",")
+        require(arr.length == 2)
+        UserAirportResult(arr(0), arr(1))
+      }.toSeq
 
-      bruteForceResult should be (geohashMapResult)
+      val geohashMapResult = GeoHashMap.calculate(users.toIterator, airPorts.toIterator).toVector
+
+      geohashMapResult should be (expectedResult)
     }
-
   }
 
 }

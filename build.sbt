@@ -26,10 +26,7 @@ libraryDependencies ++= Seq(
   "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0",
   "ch.qos.logback" % "logback-classic" % "1.1.7",
   "org.rogach" %% "scallop" % "2.1.0",
-  "com.github.davidmoten" % "rtree" % "0.8.0.1",
-  "com.github.davidmoten" % "grumpy-core" % "0.2.3",
-  "io.reactivex" % "rxscala_2.12" % "0.26.5",
-  "com.javadocmd" % "simplelatlng" % "1.3.1",
+  "com.github.tototoshi" %% "scala-csv" % "1.3.4",
   "ch.hsr" % "geohash" % "1.3.0"
 )
 
